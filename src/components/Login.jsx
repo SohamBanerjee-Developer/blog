@@ -11,14 +11,17 @@ function Login() {
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
     const [error, setError] = useState("")
+    const[wait, setWait] = useState("")
 
     const login = async(data) => {
+        setWait("wait...")
         setError("")
         try {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
                 if(userData) dispatch(authLogin(userData));
+                setWait("")
                 navigate("/")
             }
         } catch (error) {
@@ -46,6 +49,7 @@ function Login() {
                         Sign Up
                     </Link>
         </p>
+        <p className='text-red-950'>{wait}</p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
         <form onSubmit={handleSubmit(login)} className='mt-8'>
             <div className='space-y-5'>
