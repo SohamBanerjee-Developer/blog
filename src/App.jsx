@@ -27,7 +27,7 @@ function App() {
       <div className='w-full block'>
         <Header />
         <main className='h-2/3'>
-        <h1 className='white text-white text-xl font-sans'>welcome to my blog website</h1>
+        <h1 className='white text-white text-xl font-sans'>welcome to my blog website<p>login once with demo credentials to see the images</p></h1>
         <div className='h-6'> </div>
         <Outlet />
         </main>
