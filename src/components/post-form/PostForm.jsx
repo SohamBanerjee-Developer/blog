@@ -75,7 +75,8 @@ export default function PostForm({ post }) {
         return () => subscription.unsubscribe();
     }, [watch, slugTransform, setValue]);
 
-    return (
+    return (<>
+            <div className="text-red-700 text-xl mb-4">error:{error}</div>
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-2">
                 <Input
@@ -93,7 +94,12 @@ export default function PostForm({ post }) {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
-                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                <Input
+                    label="Content :"
+                    placeholder="Content"
+                    className="mb-4 h-48"
+                    {...register("content", { required: true })}
+                    />
             </div>
             <div className="w-1/3 px-2">
                 <Input
@@ -102,14 +108,14 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
-                />
+                    />
                 {post && (
                     <div className="w-full mb-4">
                         <img
                             src={appwriteService.getFilePreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
-                        />
+                            />
                     </div>
                 )}
                 <Select
@@ -117,11 +123,12 @@ export default function PostForm({ post }) {
                     label="Status"
                     className="mb-4"
                     {...register("status", { required: true })}
-                />
+                    />
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>
         </form>
+                    </>
     );
 }
