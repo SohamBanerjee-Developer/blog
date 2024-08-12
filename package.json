@@ -2,6 +2,7 @@
   "name": "12megablog",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://sohambanerjee-developer.github.io/blog/",
   "type": "module",
   "scripts": {
     "dev": "vite",
