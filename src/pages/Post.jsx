@@ -55,12 +55,15 @@ export default function Post() {
                         </div>
                     )}
                 </div>
-                <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
-                </div>
-                <div className="browser-css">
+                <div className="w-full mb-6 flex justify-between">
+                    <h1 className="text-2xl font-bold w-1/3">{post.title}</h1>
+                <div className="w-2/3 bg-white flex justify-start rounded-lg h-44 text-lg font-serif">
+                    <div>
+                    <h1 className="text-center">content:</h1>
                     {parse(post.content)}
                     </div>
+                    </div>
+                </div>
             </Container>
         </div>
     ) : null;
